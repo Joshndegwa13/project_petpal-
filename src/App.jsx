@@ -1,14 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Landing from './components/Landing'
+// App.jsx
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Viewuserprofile from "../src/components/Viewuserprofile";
+import Home from "../src/components/Home";
+import Settings from "../src/components/Settings";
+import AvatarUpload from "../src/components/AvatarUpload";
+import Landing from "./components/Landing";
+import { UserProvider } from "../src/context/UserContext";
 
 function App() {
   return (
-    <div>
-          <Landing/>
-    </div>
+    <UserProvider>
+      <Router>
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Viewuserprofile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/avatar-upload" element={<AvatarUpload />} />
+            <Route path="/landing" element={<Landing />} />
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
