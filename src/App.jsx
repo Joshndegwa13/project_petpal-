@@ -7,6 +7,9 @@ import Settings from "../src/components/Settings";
 import AvatarUpload from "../src/components/AvatarUpload";
 import Landing from "./components/Landing";
 import { UserProvider } from "../src/context/UserContext";
+import LogIn from "./components/LogIn";
+import Registration from "./components/Registration";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/avatar-upload" element={<AvatarUpload />} />
             <Route path="/landing" element={<Landing />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
         </div>
       </Router>
