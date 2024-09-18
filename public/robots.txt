@@ -1,0 +1,15 @@
+# Allow all web crawlers to access the site
+User-agent: *
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /user-settings/
+
+# Allow the web app manifest and service worker to be indexed (optional but recommended for PWAs)
+Allow: /manifest.webmanifest
+Allow: /service-worker.js
+
+# Allow search engines to crawl CSS and JS files for better rendering
+Allow: *.css
+Allow: *.js
