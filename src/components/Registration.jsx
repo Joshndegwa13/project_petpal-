@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import signup from "../assets/Images/signup.jpg";
-import { doCreateUserWithEmailAndPassword, doSignInWithGoogle } from "../../../petpal_project/src/firebase/auth"; 
-import { useAuth } from "../../../petpal_project/src/context/authcontext";
+import signup from "../assets/images/signup.jpg";
+import { doCreateUserWithEmailAndPassword, doSignInWithGoogle } from "../firebase/auth"; 
+import { useAuth } from "../context/authcontext";
 
 function Registration() {
   const { userLoggedIn } = useAuth(); // Access userLoggedIn from context

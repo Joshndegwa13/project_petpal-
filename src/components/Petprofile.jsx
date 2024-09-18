@@ -4,7 +4,7 @@ import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage
 import PetForm from './PetForm';
 import PetCard from './PetCard';
 import PetDetailsModal from './PetDetailsModal';
-import { database, storage } from '../firebase/firebaseConfig'; // Import Firebase database and storage
+import { database, storage } from '../firebase/firebase'; // Import Firebase database and storage
 
 const PetProfile = () => {
   const [pets, setPets] = useState([]);

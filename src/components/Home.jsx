@@ -8,7 +8,7 @@ const Home = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="bg-red-500 h-96 flex items-center justify-center">
+      <div className="bg-red-700 h-96 flex items-center justify-center">
         <h1 className="text-white text-4xl font-bold text-center">
           Welcome to PetPal: The Ultimate Pet Management Companion
         </h1>
