@@ -5,6 +5,7 @@ import Viewuserprofile from "../src/components/Viewuserprofile";
 import Home from "../src/components/Home";
 import Settings from "../src/components/Settings";
 import AvatarUpload from "../src/components/AvatarUpload";
+import Landing from "./components/Landing";
 import { UserProvider } from "../src/context/UserContext";
 
 function App() {
