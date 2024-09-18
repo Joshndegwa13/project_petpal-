@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import login from "../assets/Images/login.jpg";
-import { doSignInWithEmailAndPassword, } from "../../../petpal_project/src/firebase/auth";
-import { useAuth } from "../../../petpal_project/src/context/authcontext";
+import login from "../assets/images/login.jpg";
+import { doSignInWithEmailAndPassword, } from "../firebase/auth";
+import { useAuth } from "../context/authcontext";
 
 function LogIn() {
   const { userLoggedIn, loading } = useAuth();

@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Viewuserprofile from "../src/components/Viewuserprofile";
@@ -10,6 +9,7 @@ import { UserProvider } from "../src/context/UserContext";
 import LogIn from "./components/LogIn";
 import Registration from "./components/Registration";
 import ForgotPassword from "./components/ForgotPassword";
+import PetProfile from "./components/Petprofile";
 
 function App() {
   return (
@@ -17,15 +17,15 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} /> {/* Landing page */}
+            <Route path="/home" element={<Home />} /> {/* Home page */}
             <Route path="/profile" element={<Viewuserprofile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/avatar-upload" element={<AvatarUpload />} />
-            <Route path="/landing" element={<Landing />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/petprofile" element={<PetProfile  />} />
+            <Route path="/petprofile" element={<PetProfile />} />
           </Routes>
         </div>
       </Router>

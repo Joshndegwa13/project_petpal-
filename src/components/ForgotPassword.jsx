@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { doPasswordReset } from "../../../petpal_project/src/firebase/auth";
+import { doPasswordReset } from "../firebase/auth";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");

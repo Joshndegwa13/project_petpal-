@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, set, update, push } from 'firebase/database'; // Import push for creating new references
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import storage functions
-import { database, storage } from '../firebase/firebaseConfig'; // Import firebase configurations
+import { database, storage } from '../firebase/firebase'; // Import firebase configurations
 
 const PetForm = ({ onAddPet, onClose, petToEdit }) => {
   const [petName, setPetName] = useState('');
