@@ -25,6 +25,7 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/petprofile" element={<PetProfile  />} />
           </Routes>
         </div>
       </Router>
