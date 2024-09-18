@@ -31,6 +31,7 @@ function LogIn() {
   }
 
   return (
+    // navigate to home page after logged in
     <div>
       <div className="w-full mb-8">
         <h1 className="text-3xl font-bold text-red-500 relative ml-20">
