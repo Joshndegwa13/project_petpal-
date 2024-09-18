@@ -16,7 +16,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Viewuserprofile />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/avatar-upload" element={<AvatarUpload />} />{" "}
+            <Route path="/avatar-upload" element={<AvatarUpload />} />
+            <Route path="/landing" element={<Landing />} />
           </Routes>
         </div>
       </Router>
