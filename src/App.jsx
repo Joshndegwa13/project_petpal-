@@ -30,7 +30,12 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/petprofile" element={<PetProfile />} />
-          </Routes>
+            <Route path="/upload" element={<ImageUpload />} />
+            <Route path="/image/:id" element={<ImageDetail />} />
+            <Route path='/image/upload'></Route>
+            <Route path="/Memories" element={<Memories />} />
+            <Route path="/tasks" element={<Tasks />} />
+         </Routes>
         </div>
       </Router>
     </UserProvider>
@@ -38,3 +43,4 @@ function App() {
 }
 
 export default App;
+
