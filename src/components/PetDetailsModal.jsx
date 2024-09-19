@@ -1,19 +1,27 @@
 import React from 'react';
-import { PencilIcon } from '@heroicons/react/solid'; // Ensure hero icons are installed
+import { PencilIcon, DocumentTextIcon } from '@heroicons/react/solid'; // Import task icon
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const PetDetailsModal = ({ pet, onClose, onDelete, onEdit }) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleTaskClick = () => {
+    navigate('/tasks'); // Navigate to tasks page
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold">Pet Details</h2>
-          <button
-            onClick={onEdit}
-            aria-label={`Edit ${pet.petName}`}
-            className="text-gray-600 hover:text-gray-800"
-          >
-            <PencilIcon className="w-6 h-6" />
-          </button>
+          <div className="flex items-center">
+            <button onClick={handleTaskClick} className="text-gray-600 hover:text-gray-800 mr-4">
+              <DocumentTextIcon className="w-6 h-6" /> {/* Task icon */}
+            </button>
+            <button onClick={onEdit} className="text-gray-600 hover:text-gray-800">
+              <PencilIcon className="w-6 h-6" />
+            </button>
+          </div>
         </div>
         <img
           src={pet.petImage ? pet.petImage : 'https://via.placeholder.com/150'}
@@ -29,15 +37,10 @@ const PetDetailsModal = ({ pet, onClose, onDelete, onEdit }) => {
           <button
             className="bg-red-600 text-white p-2 rounded hover:bg-red-700 transition"
             onClick={() => onDelete(pet)}
-            aria-label={`Delete ${pet.petName}`}
           >
             Delete
           </button>
-          <button
-            onClick={onClose}
-            className="ml-4 text-gray-600 hover:text-gray-800"
-            aria-label="Close details"
-          >
+          <button onClick={onClose} className="ml-4 text-gray-600 hover:text-gray-800">
             Close
           </button>
         </div>
