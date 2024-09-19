@@ -19,7 +19,7 @@ const Home = () => {
         {/* Marketing Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <img
-            src="src/assets/images/parrotlan.jpg"
+            src="../src/assets/images/parrotlan.jpg"
             alt="Our Product"
             className="h-32 mb-4 rounded-md"
           />
