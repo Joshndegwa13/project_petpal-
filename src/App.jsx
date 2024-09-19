@@ -10,6 +10,7 @@ import LogIn from "./components/LogIn";
 import Registration from "./components/Registration";
 import ForgotPassword from "./components/ForgotPassword";
 import PetProfile from "./components/Petprofile";
+import Tasks from "./components/Tasks";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
             <Route path="/petprofile" element={<PetProfile />} />
+            <Route path="/tasks" element={<Tasks />} />
           </Routes>
         </div>
       </Router>
