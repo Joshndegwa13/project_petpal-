@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ref, onValue, remove, set } from 'firebase/database'; // Import remove and set for database operations
+import { ref, onValue, remove, set } from 'firebase/database'; // Import Firebase Realtime Database methods
 import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage methods
 import PetForm from './PetForm';
 import PetCard from './PetCard';
 import PetDetailsModal from './PetDetailsModal';
-import { database, storage } from '../firebase/firebase'; // Import Firebase database and storage
+import { database, storage } from '../firebase/firebase'; // Import Firebase configurations
+import Navbar from "./Navbar.jsx";
 
 const PetProfile = () => {
   const [pets, setPets] = useState([]);
@@ -15,67 +16,79 @@ const PetProfile = () => {
   // Fetch pets from the database when the component mounts
   useEffect(() => {
     const petsRef = ref(database, 'pets');
-    onValue(petsRef, (snapshot) => {
+    const unsubscribe = onValue(petsRef, (snapshot) => {
       const petsData = snapshot.val();
       if (petsData) {
-        const petsArray = Object.entries(petsData).map(([id, data]) => ({ id, ...data })); // Convert object to array and include ID
+        const petsArray = Object.entries(petsData).map(([id, data]) => ({ id, ...data }));
         setPets(petsArray);
       }
     });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
 
-  // Function to handle adding a new pet or updating an existing pet
+  // Handle adding a new pet or updating an existing pet
   const handleAddPet = async (newPet) => {
-    if (petToEdit) {
-      // If editing, update the existing pet
-      const petRef = ref(database, `pets/${petToEdit.id}`);
-      await set(petRef, newPet);
-      setPets(pets.map((pet) => (pet.id === petToEdit.id ? newPet : pet)));
-      setPetToEdit(null);
-    } else {
-      // Add new pet
-      const newPetRef = ref(database, `pets/${newPet.id}`);
-      await set(newPetRef, newPet);
-      setPets([...pets, newPet]);
+    try {
+      if (petToEdit) {
+        // Update existing pet
+        const petRef = ref(database, `pets/${petToEdit.id}`);
+        await set(petRef, newPet);
+        setPets(pets.map((pet) => (pet.id === petToEdit.id ? newPet : pet)));
+        setPetToEdit(null);
+      } else {
+        // Add new pet
+        const newPetRef = ref(database, `pets/${newPet.id}`);
+        await set(newPetRef, newPet);
+        setPets([...pets, newPet]);
+      }
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error adding or updating pet:", error);
     }
-    setShowForm(false);
   };
 
-  // Function to handle deleting a pet
+  // Handle deleting a pet
   const handleDeletePet = async (petToDelete) => {
-    const petRef = ref(database, `pets/${petToDelete.id}`);
-    await remove(petRef);
-    setPets(pets.filter((pet) => pet.id !== petToDelete.id));
-    setSelectedPet(null);
+    try {
+      const petRef = ref(database, `pets/${petToDelete.id}`);
+      await remove(petRef);
+      setPets(pets.filter((pet) => pet.id !== petToDelete.id));
+      setSelectedPet(null);
+    } catch (error) {
+      console.error("Error deleting pet:", error);
+    }
   };
 
-  // Function to handle opening the form for editing a pet
+  // Handle opening the form for editing a pet
   const handleEditPet = (pet) => {
     setPetToEdit(pet);
     setShowForm(true);
     setSelectedPet(null);
   };
 
-  // Function to handle showing pet details in a modal
+  // Handle showing pet details in a modal
   const handleShowDetails = (pet) => {
     setSelectedPet(pet);
   };
 
-  // Function to handle image upload and return the image URL
+  // Handle image upload and return the image URL
   const handleImageUpload = async (file) => {
-    const imageRef = storageRef(storage, `pet-images/${Date.now()}_${file.name}`);
-    await uploadBytes(imageRef, file);
-    const downloadURL = await getDownloadURL(imageRef);
-    return downloadURL;
+    try {
+      const imageRef = storageRef(storage, `pet-images/${Date.now()}_${file.name}`);
+      await uploadBytes(imageRef, file);
+      const downloadURL = await getDownloadURL(imageRef);
+      return downloadURL;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      return '';
+    }
   };
 
   return (
     <div className="relative min-h-screen bg-gray-100">
-      <header className="bg-red-600 text-white p-4">
-        <nav className="container mx-auto flex items-center justify-between">
-          <h1 className="text-2xl font-bold">PetPal</h1>
-        </nav>
-      </header>
+  <Navbar />
 
       <button
         onClick={() => setShowForm(true)}

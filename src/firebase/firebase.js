@@ -5,12 +5,12 @@ import { getAuth } from 'firebase/auth';
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCNjSOWEQHj-3ZGuLvBFvbQB8oP2ypGOY4",
-  authDomain: "petpal-71a9c.firebaseapp.com",
-  projectId: "petpal-71a9c",
-  storageBucket: "petpal-71a9c.appspot.com",
-  messagingSenderId: "451249252053",
-  appId: "1:451249252053:web:84abe17f08eeca9ae7645c"
+  apiKey: "AIzaSyDzwLlp3TP0L3ExGU_A9fYJgEH1R5_lbwc",
+  authDomain: "petpal-db8cf.firebaseapp.com",
+  projectId: "petpal-db8cf",
+  storageBucket: "petpal-db8cf.appspot.com",
+  messagingSenderId: "689177586935",
+  appId: "1:689177586935:web:ea5cbf11463a1ad97cf7f2"
 };
 
 const app = initializeApp(firebaseConfig);

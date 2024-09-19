@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import login from "../assets/images/login.jpg";
-import { doSignInWithEmailAndPassword, } from "../firebase/auth";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { doSignInWithEmailAndPassword } from "../firebase/auth";
 import { useAuth } from "../context/authcontext";
 
 function LogIn() {
+  const navigate = useNavigate(); // Initialize navigate
   const { userLoggedIn, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,12 +20,12 @@ function LogIn() {
       await doSignInWithEmailAndPassword(email, password);
       setEmail("");  // Clear the email field
       setPassword("");  // Clear the password field
+      navigate('/home'); // Navigate to home page after login
     } catch (error) {
       setErrorMessage(error.message);
     }
     setIsSigningIn(false);
   };
-
 
   // Display a loading message while authentication status is being determined
   if (loading) {
@@ -31,7 +33,6 @@ function LogIn() {
   }
 
   return (
-    // navigate to home page after logged in
     <div>
       <div className="w-full mb-8">
         <h1 className="text-3xl font-bold text-red-500 relative ml-20">
@@ -81,7 +82,13 @@ function LogIn() {
                 </p>
                 <p>
                   Don't have an Account?{" "}
-                  <a href="#" className="text-blue-600 hover:underline">Register</a>
+                  <a 
+                    href="#" 
+                    className="text-blue-600 hover:underline" 
+                    onClick={() => navigate('/registration')} // Navigate to Registration form
+                  >
+                    Register
+                  </a>
                 </p>
               </div>
             </form>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import signup from "../assets/images/signup.jpg";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { doCreateUserWithEmailAndPassword, doSignInWithGoogle } from "../firebase/auth"; 
 import { useAuth } from "../context/authcontext";
 
 function Registration() {
+  const navigate = useNavigate(); // Initialize navigate
   const { userLoggedIn } = useAuth(); // Access userLoggedIn from context
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,6 +36,7 @@ function Registration() {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      navigate('/home'); // Navigate to home page after registration
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -47,6 +50,7 @@ function Registration() {
       setIsSigningIn(true);
       try {
         await doSignInWithGoogle();
+        navigate('/home'); // Navigate to home page after Google sign-in
       } catch (err) {
         setErrorMessage(err.message);
       }
@@ -129,7 +133,13 @@ function Registration() {
               <div className="text-sm mt-2">
                 <p>
                   Already have an Account?{" "}
-                  <a href="#" className="text-blue-600 hover:underline">LogIn</a>
+                  <a 
+                    href="#" 
+                    className="text-blue-600 hover:underline" 
+                    onClick={() => navigate('/login')} // Navigate to Login page
+                  >
+                    LogIn
+                  </a>
                 </p>
               </div>
             </form>

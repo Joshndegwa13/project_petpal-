@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import HamburgerMenu from "react-hamburger-menu";
 import ProfileDropdown from "../components/ProfileDropdown";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { userAvatar } = useContext(UserContext); // Access avatar from context
+  const navigate = useNavigate(); // Hook for navigation
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -15,6 +16,14 @@ const Navbar = () => {
 
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
+  };
+
+  // Function to handle logout
+  const handleLogout = () => {
+    // Perform logout logic here (e.g., clearing user data, etc.)
+    
+    // Navigate to the Landing page
+    navigate("/");
   };
 
   return (
@@ -40,7 +49,7 @@ const Navbar = () => {
           <div className={`hidden lg:flex space-x-10`}>
             <h1 className="text-3xl font-bold text-red-500">PetPal</h1>
             <Link
-              to="/"
+              to="/home"
               className="text-gray-900 hover:text-red-500 text-lg font-medium"
             >
               Home
@@ -89,7 +98,10 @@ const Navbar = () => {
 
             {/* Logout Button for large screens */}
             <div className="hidden lg:block">
-              <button className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md">
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md"
+              >
                 Logout
               </button>
             </div>

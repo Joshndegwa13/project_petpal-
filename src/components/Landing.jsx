@@ -6,7 +6,7 @@ const Landing = () => {
   const navigate = useNavigate(); // Initialize navigate
 
   const handleGetStarted = () => {
-    navigate('/home'); // Navigate to the home route
+    navigate('/login'); // Navigate to the login route
   };
 
   const handleLogin = () => {
