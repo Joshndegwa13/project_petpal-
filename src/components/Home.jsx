@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar.jsx";
+import parrotImg from "../assets/images/parrotlan.jpg";
 
 const Home = () => {
   return (
@@ -19,7 +20,7 @@ const Home = () => {
         {/* Marketing Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <img
-            src="../src/assets/images/parrotlan.jpg"
+            src = {parrotImg}
             alt="Our Product"
             className="h-32 mb-4 rounded-md"
           />
