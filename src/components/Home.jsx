@@ -1,6 +1,9 @@
 import React from "react";
 import Navbar from "./Navbar.jsx";
 import parrotImg from "../assets/images/parrotlan.jpg";
+import greydogImg from "../assets/images/greydog.jpg";
+import catImg from "../assets/images/cat.jpg";
+import rabbitlanImg from "../assets/images/rabbitlan.jpg";
 
 const Home = () => {
   return (
@@ -38,7 +41,7 @@ const Home = () => {
         {/* Pet Profile Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <img
-            src="src/assets/images/greydog.jpg"
+            src= {greydogImg}
             alt="Pet Profile"
             className="h-32 mb-4 rounded-md"
           />
@@ -55,7 +58,7 @@ const Home = () => {
         {/* Tasks Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <img
-            src="src/assets/images/cat.jpg"
+            src= {catImg}
             alt="Tasks"
             className=" h-32 mb-4 rounded-md"
           />
@@ -71,7 +74,7 @@ const Home = () => {
         {/* Memories Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
           <img
-            src="src/assets/images/rabbitlan.jpg"
+            src={rabbitlanImg}
             alt="Memories"
             className="h-32 mb-4 rounded-md"
           />
