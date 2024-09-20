@@ -9,7 +9,7 @@ const VetVisitForm = ({ onVetVisitAdded }) => {
   const [date, setDate] = useState(new Date());
 
   const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "https://petpal-backend-tasks-nu.vercel.app";
+    import.meta.env.VITE_API_BASE_URL || "http:localhost:8000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
