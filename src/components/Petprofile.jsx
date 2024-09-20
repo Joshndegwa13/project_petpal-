@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { ref, onValue, remove, set } from 'firebase/database'; // Import Firebase Realtime Database methods
-import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import Firebase Storage methods
+import React, { useState, useEffect, useContext } from 'react';
+import { ref, onValue, remove, set } from 'firebase/database';
+import { ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import PetForm from './PetForm';
 import PetCard from './PetCard';
 import PetDetailsModal from './PetDetailsModal';
-import { database, storage } from '../firebase/firebase'; // Import Firebase configurations
+import { database, storage } from '../firebase/firebase';
 import Navbar from "./Navbar.jsx";
+import { ThemeContext } from '../context/Themecontext.jsx'; // Import ThemeContext
 
 const PetProfile = () => {
   const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [petToEdit, setPetToEdit] = useState(null);
+  const { theme } = useContext(ThemeContext); // Access theme from context
 
-  // Fetch pets from the database when the component mounts
   useEffect(() => {
     const petsRef = ref(database, 'pets');
     const unsubscribe = onValue(petsRef, (snapshot) => {
@@ -23,22 +24,17 @@ const PetProfile = () => {
         setPets(petsArray);
       }
     });
-
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
-  // Handle adding a new pet or updating an existing pet
   const handleAddPet = async (newPet) => {
     try {
       if (petToEdit) {
-        // Update existing pet
         const petRef = ref(database, `pets/${petToEdit.id}`);
         await set(petRef, newPet);
         setPets(pets.map((pet) => (pet.id === petToEdit.id ? newPet : pet)));
         setPetToEdit(null);
       } else {
-        // Add new pet
         const newPetRef = ref(database, `pets/${newPet.id}`);
         await set(newPetRef, newPet);
         setPets([...pets, newPet]);
@@ -49,7 +45,6 @@ const PetProfile = () => {
     }
   };
 
-  // Handle deleting a pet
   const handleDeletePet = async (petToDelete) => {
     try {
       const petRef = ref(database, `pets/${petToDelete.id}`);
@@ -61,19 +56,16 @@ const PetProfile = () => {
     }
   };
 
-  // Handle opening the form for editing a pet
   const handleEditPet = (pet) => {
     setPetToEdit(pet);
     setShowForm(true);
     setSelectedPet(null);
   };
 
-  // Handle showing pet details in a modal
   const handleShowDetails = (pet) => {
     setSelectedPet(pet);
   };
 
-  // Handle image upload and return the image URL
   const handleImageUpload = async (file) => {
     try {
       const imageRef = storageRef(storage, `pet-images/${Date.now()}_${file.name}`);
@@ -87,9 +79,8 @@ const PetProfile = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
-  <Navbar />
-
+    <div className={`relative min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-gray-100 text-black'}`}>
+      <Navbar />
       <button
         onClick={() => setShowForm(true)}
         className="fixed bottom-8 right-8 bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-red-700"

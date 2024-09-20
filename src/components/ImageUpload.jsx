@@ -3,7 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebas
 import { storage, database } from '../firebase/firebase'; 
 import { ref as dbRef, set, onValue, remove } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
-
+import Navbar from './Navbar';
 const ImageUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState('');
@@ -117,7 +117,8 @@ const ImageUpload = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Memories</h1>
+      <Navbar />
+      
 
       {/* File input and upload section */}
       <div className="bg-white shadow-lg rounded-lg p-6 mb-6">
@@ -136,7 +137,7 @@ const ImageUpload = () => {
           />
           <button
             onClick={handleUpload}
-            className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg disabled:opacity-50"
+            className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg "
             disabled={!selectedFile || uploading}
           >
             {uploading ? 'Uploading...' : 'Upload'}
