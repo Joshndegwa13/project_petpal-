@@ -37,13 +37,13 @@ const Landing = () => {
         </div>
         <div className="flex space-x-4">
           <button
-            className="bg-red-600 px-6 py-2 rounded-xl text-xl font-bold shadow-lg hover:scale-105 hover:bg-red-700 transition duration-300"
+            className="bg-red-600 text-white px-6 py-2 rounded-xl text-xl font-bold shadow-lg hover:scale-105 hover:bg-red-700 transition duration-300"
             onClick={handleLogin}
           >
             Login
           </button>
           <button
-            className="bg-red-600 px-6 py-2 rounded-xl text-xl font-bold shadow-lg hover:scale-105 hover:bg-red-700 transition duration-300"
+            className="bg-red-600 text-white px-6 py-2 rounded-xl text-xl font-bold shadow-lg hover:scale-105 hover:bg-red-700 transition duration-300"
             onClick={handleSignUp}
           >
             Sign Up
@@ -57,7 +57,7 @@ const Landing = () => {
           Take Better Care of Your Pet
         </h1>
         <button
-          className="bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-8 rounded-full text-2xl font-bold shadow-xl transform hover:scale-110 transition duration-500 ease-in-out"
+          className="bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-8 rounded-xl text-2xl font-bold shadow-xl transform hover:scale-110 transition duration-500 ease-in-out"
           onClick={handleGetStarted}
         >
           Get Started

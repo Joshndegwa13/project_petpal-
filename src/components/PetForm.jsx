@@ -81,30 +81,30 @@ const PetForm = ({ onAddPet, onClose, petToEdit }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md overflow-y-auto max-h-[90vh]">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md overflow-y-auto max-h-[90vh]">
         <form onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold mb-4">{petToEdit ? 'Edit Pet Details' : 'Add Pet Details'}</h2>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            {petToEdit ? 'Edit Pet Details' : 'Add Pet Details'}
+          </h2>
 
           {/* Form Fields */}
-          {/* Pet Name Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Pet Name</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Pet Name</label>
             <input
               type="text"
               value={petName}
               onChange={(e) => setPetName(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-300"
               required
             />
           </div>
 
-          {/* Pet Type Select Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Pet Type</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Pet Type</label>
             <select
               value={petType}
               onChange={(e) => setPetType(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-300"
               required
             >
               <option value="">Select Pet Type</option>
@@ -116,13 +116,12 @@ const PetForm = ({ onAddPet, onClose, petToEdit }) => {
             </select>
           </div>
 
-          {/* Pet Gender Select Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Pet Gender</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Pet Gender</label>
             <select
               value={petGender}
               onChange={(e) => setPetGender(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-300"
               required
             >
               <option value="">Select Gender</option>
@@ -131,38 +130,39 @@ const PetForm = ({ onAddPet, onClose, petToEdit }) => {
             </select>
           </div>
 
-          {/* Pet Age Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Pet Age</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Pet Age</label>
             <input
               type="number"
               value={petAge}
               onChange={(e) => setPetAge(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-300"
               required
             />
           </div>
 
-          {/* Pet Breed Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Pet Breed</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Pet Breed</label>
             <input
               type="text"
               value={petBreed}
               onChange={(e) => setPetBreed(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-300"
               required
             />
           </div>
 
-          {/* Image Upload Field */}
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Upload Pet Image</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full p-2 border border-gray-300 rounded" />
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Upload Pet Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded"
+            />
             {petImage && <img src={URL.createObjectURL(petImage)} alt="Pet Preview" className="mt-4 w-24 h-24 object-cover rounded" />}
           </div>
 
-          {/* Submit and Cancel Buttons */}
           <button
             type="submit"
             className="bg-red-600 text-white p-2 rounded hover:bg-red-700 transition"
@@ -173,7 +173,7 @@ const PetForm = ({ onAddPet, onClose, petToEdit }) => {
           <button
             type="button"
             onClick={onClose}
-            className="ml-4 text-gray-600 hover:text-gray-800"
+            className="ml-4 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200"
           >
             Cancel
           </button>
