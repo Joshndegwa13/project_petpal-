@@ -1,45 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Navbar from "./Navbar";
 import { FaSun, FaMoon } from "react-icons/fa"; // Import sun and moon icons from react-icons
+import { ThemeContext } from "../context/Themecontext"; // Import ThemeContext to access theme and toggle function
 
 const Settings = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  // Toggle Dark Mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  // Apply dark mode class to the root element (html or body)
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
-  // Load theme from localStorage on initial render
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setDarkMode(true);
-    }
-  }, []);
+  const { theme, toggleTheme } = useContext(ThemeContext); // Use theme and toggleTheme from context
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition duration-500">
+    <div
+      className={`min-h-screen transition duration-500 ${
+        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-900"
+      }`}
+    >
       <Navbar />
       <div className="px-4 py-8">
         <div className="flex items-center space-x-4">
           <p className="text-lg">Toggle Dark Mode:</p>
           <button
-            onClick={toggleDarkMode}
+            onClick={toggleTheme} // Use the toggleTheme from context
             className="p-2 rounded-full bg-red-500 text-white"
           >
-            {darkMode ? <FaSun /> : <FaMoon />}
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
         </div>
       </div>

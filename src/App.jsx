@@ -1,46 +1,31 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Viewuserprofile from "../src/components/Viewuserprofile";
-import Home from "../src/components/Home";
-import Settings from "../src/components/Settings";
-import AvatarUpload from "../src/components/AvatarUpload";
-import Landing from "./components/Landing";
-import { UserProvider } from "../src/context/UserContext";
-import LogIn from "./components/LogIn";
-import Registration from "./components/Registration";
-import ForgotPassword from "./components/ForgotPassword";
-import PetProfile from "./components/Petprofile";
-import Memories from "./components/Memories";
-import ImageUpload from './components/ImageUpload'; 
-import ImageDetail from './components/ImageDetail'; 
-import Tasks from "./components/Tasks";
+import React, { useContext } from "react";
+import Navbar from "./Navbar";
+import { FaSun, FaMoon } from "react-icons/fa"; // Import sun and moon icons from react-icons
+import { ThemeContext } from "../context/Themecontext"; // Import ThemeContext to access theme and toggle function
 
-function App() {
+const Settings = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext); // Use theme and toggleTheme from context
+
   return (
-    <UserProvider>
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<Landing />} /> {/* Landing page */}
-            <Route path="/home" element={<Home />} /> {/* Home page */}
-            <Route path="/profile" element={<Viewuserprofile />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/avatar-upload" element={<AvatarUpload />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/petprofile" element={<PetProfile />} />
-            <Route path="/upload" element={<ImageUpload />} />
-            <Route path="/image/:id" element={<ImageDetail />} />
-            <Route path='/image/upload'></Route>
-            <Route path="/Memories" element={<Memories />} />
-            <Route path="/tasks" element={<Tasks />} />
-         </Routes>
+    <div
+      className={`min-h-screen transition duration-500 ${
+        theme === "dark" ? "bg-black text-white" : "bg-white text-gray-900"
+      }`}
+    >
+      <Navbar />
+      <div className="px-4 py-8">
+        <div className="flex items-center space-x-4">
+          <p className="text-lg">Toggle Dark Mode:</p>
+          <button
+            onClick={toggleTheme} // Use the toggleTheme from context
+            className="p-2 rounded-full bg-red-500 text-white"
+          >
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
+          </button>
         </div>
-      </Router>
-    </UserProvider>
+      </div>
+    </div>
   );
-}
+};
 
-export default App;
-
+export default Settings;
