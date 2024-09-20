@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "./Navbar.jsx";
+import { ThemeContext } from '../context/Themecontext.jsx'; // Import ThemeContext
 import parrotImg from "../assets/images/parrotlan.jpg";
 import greydogImg from "../assets/images/greydog.jpg";
 import catImg from "../assets/images/cat.jpg";
 import rabbitlanImg from "../assets/images/rabbitlan.jpg";
 
 const Home = () => {
+  const { isDarkMode } = useContext(ThemeContext); // Use theme context
+
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
       {/* Navbar */}
       <Navbar />
 
@@ -19,11 +22,11 @@ const Home = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10">
+      <div className={`max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         {/* Marketing Section */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
           <img
-            src = {parrotImg}
+            src={parrotImg}
             alt="Our Product"
             className="h-32 mb-4 rounded-md"
           />
@@ -39,15 +42,13 @@ const Home = () => {
         </div>
 
         {/* Pet Profile Section */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
           <img
-            src= {greydogImg}
+            src={greydogImg}
             alt="Pet Profile"
             className="h-32 mb-4 rounded-md"
           />
-          <h2 className="text-2xl font-semibold mb-4">
-            Manage Your Pet's Profile
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Manage Your Pet's Profile</h2>
           <p className="text-gray-600 text-center">
             With PetPal, you can easily manage your pet's essential information.
             Track details like breed, age, and health history. Have everything
@@ -56,11 +57,11 @@ const Home = () => {
         </div>
 
         {/* Tasks Section */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
           <img
-            src= {catImg}
+            src={catImg}
             alt="Tasks"
-            className=" h-32 mb-4 rounded-md"
+            className="h-32 mb-4 rounded-md"
           />
           <h2 className="text-2xl font-semibold mb-4">Never Miss a Task</h2>
           <p className="text-gray-600 text-center">
@@ -72,7 +73,7 @@ const Home = () => {
         </div>
 
         {/* Memories Section */}
-        <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
           <img
             src={rabbitlanImg}
             alt="Memories"
