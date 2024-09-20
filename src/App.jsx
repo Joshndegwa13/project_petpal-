@@ -13,6 +13,7 @@ import PetProfile from "./components/Petprofile";
 import Memories from "./components/Memories";
 import ImageUpload from './components/ImageUpload'; 
 import ImageDetail from './components/ImageDetail'; 
+import Tasks from "./components/Tasks";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/image/:id" element={<ImageDetail />} />
             <Route path='/image/upload'></Route>
             <Route path="/Memories" element={<Memories />} />
+            <Route path="/tasks" element={<Tasks />} />
          </Routes>
         </div>
       </Router>
@@ -41,3 +43,4 @@ function App() {
 }
 
 export default App;
+
