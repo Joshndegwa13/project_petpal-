@@ -10,7 +10,7 @@ const TaskForm = ({ onTaskAdded }) => {
   const [isDaily, setIsDaily] = useState(false); // New state
 
   const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "https://petpal-backend-tasks-nu.vercel.app";
+    import.meta.env.VITE_API_BASE_URL || "https://vercel.com/joshua-s-projects-e2664b3b/petpal-backend-tasks";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
