@@ -22,7 +22,7 @@ const TaskList = ({ tasks, onCompleteTask, selectedDate, isTaskCompleted }) => {
         {!completed && (
           <button
             onClick={() => onCompleteTask(task.id)}
-            className="bg-green-500 text-white px-2 py-1 rounded"
+            className="bg-red-700 text-white px-2 py-1 rounded hover:bg-red-500"
           >
             Mark as Done
           </button>
@@ -32,7 +32,7 @@ const TaskList = ({ tasks, onCompleteTask, selectedDate, isTaskCompleted }) => {
   };
 
   return (
-    <div className="p-4 bg-white shadow-md mt-6">
+    <div className="p-4 bg-white mt-6">
       <h2 className="text-xl font-bold mb-4">
         Tasks for {selectedDate.toLocaleDateString()}
       </h2>
