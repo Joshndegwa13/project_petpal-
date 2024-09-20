@@ -24,7 +24,7 @@ const CalendarComponent = ({ tasks, vetVisits, onDateChange }) => {
   };
 
   return (
-    <div className="p-4 bg-white shadow-md">
+    <div className="p-4 bg-white">
       <h2 className="text-xl font-bold mb-4">Calendar</h2>
       <Calendar onChange={onDateChange} tileContent={tileContent} />
     </div>

@@ -97,7 +97,7 @@ const Tasks = () => {
       <Navbar />
       <div className="flex flex-col md:flex-row p-4">
         {/* Left Side */}
-        <div className="w-full md:w-2/3 md:pr-4">
+        <div className="w-full md:w-2/3 md:pr-4 divide-y-2 divide-red-500 pl-20">
           {/* Forms */}
           <TaskForm onTaskAdded={fetchTasks} />
           <VetVisitForm onVetVisitAdded={fetchVetVisits} />
@@ -117,7 +117,7 @@ const Tasks = () => {
         </div>
 
         {/* Right Side */}
-        <div className="w-full md:w-1/3 md:pl-4 mt-6 md:mt-0">
+        <div className="w-full md:w-1/3 md:pl-4 mt-2 md:mt-0 pr-20">
           {/* Progress Bar */}
           <ProgressBar progress={progress} selectedDate={selectedDate} />
           {/* Calendar */}
