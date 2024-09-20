@@ -16,7 +16,7 @@ const Tasks = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const API_BASE_URL =
-    import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    import.meta.env.VITE_API_BASE_URL || "https://petpal-backend-tasks-nu.vercel.app";
 
   // Fetch tasks and vet visits
   useEffect(() => {
