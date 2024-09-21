@@ -1,4 +1,3 @@
-// src/components/VetVisitForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";

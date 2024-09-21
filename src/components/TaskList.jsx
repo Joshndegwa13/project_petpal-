@@ -1,5 +1,3 @@
-// src/components/TaskList.jsx
-
 import React from "react";
 
 const TaskList = ({ tasks, onCompleteTask, selectedDate, isTaskCompleted }) => {

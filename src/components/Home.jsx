@@ -1,33 +1,29 @@
 import React, { useContext } from "react";
 import Navbar from "./Navbar.jsx";
-import { ThemeContext } from '../context/Themecontext.jsx'; // Import ThemeContext
+import { ThemeContext } from '../context/Themecontext.jsx'; 
 import parrotImg from "../assets/images/parrotlan.jpg";
 import greydogImg from "../assets/images/greydog.jpg";
 import catImg from "../assets/images/cat.jpg";
 import rabbitlanImg from "../assets/images/rabbitlan.jpg";
 
 const Home = () => {
-  const { isDarkMode } = useContext(ThemeContext); // Use theme context
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-      {/* Navbar */}
+    <div className={`relative min-h-screen ${isDarkMode ? 'bg-black text-white' : 'bg-gray-100 text-black'}`}>
       <Navbar />
 
-      {/* Hero Section */}
       <div className="bg-red-700 h-96 flex items-center justify-center">
         <h1 className="text-white text-4xl font-bold text-center">
           Welcome to PetPal: The Ultimate Pet Management Companion
         </h1>
       </div>
 
-      {/* Main Content */}
       <div className={`max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        {/* Marketing Section */}
-        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} transition-transform transform hover:scale-105`}>
           <img
             src={parrotImg}
-            alt="Our Product"
+            alt="A parrot in a colorful setting"
             className="h-32 mb-4 rounded-md"
           />
           <h2 className="text-2xl font-semibold mb-4">Why Choose PetPal?</h2>
@@ -41,11 +37,10 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Pet Profile Section */}
-        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} transition-transform transform hover:scale-105`}>
           <img
             src={greydogImg}
-            alt="Pet Profile"
+            alt="A grey dog looking friendly"
             className="h-32 mb-4 rounded-md"
           />
           <h2 className="text-2xl font-semibold mb-4">Manage Your Pet's Profile</h2>
@@ -56,11 +51,10 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Tasks Section */}
-        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} transition-transform transform hover:scale-105`}>
           <img
             src={catImg}
-            alt="Tasks"
+            alt="A playful cat"
             className="h-32 mb-4 rounded-md"
           />
           <h2 className="text-2xl font-semibold mb-4">Never Miss a Task</h2>
@@ -72,11 +66,10 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Memories Section */}
-        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
+        <div className={`shadow-lg rounded-lg p-6 flex flex-col items-center ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} transition-transform transform hover:scale-105`}>
           <img
             src={rabbitlanImg}
-            alt="Memories"
+            alt="A rabbit in a lush environment"
             className="h-32 mb-4 rounded-md"
           />
           <h2 className="text-2xl font-semibold mb-4">Capture Memories</h2>

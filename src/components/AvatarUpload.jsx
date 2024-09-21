@@ -1,13 +1,14 @@
-// AvatarUploadModal.jsx
 import React, { useState, useContext } from "react";
-import { storage } from "../firebase/firebase"; // Updated path to Firebase
+import { storage } from "../firebase/firebase"; 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { UserContext } from "../context/UserContext"; 
+import { ThemeContext } from "../context/Themecontext"; // Import ThemeContext
 
 const AvatarUploadModal = ({ isOpen, onClose }) => {
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const { updateUserAvatar } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext); // Get the theme
 
   if (!isOpen) return null;
 
@@ -47,21 +48,25 @@ const AvatarUploadModal = ({ isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full"
+        className={`p-8 rounded-lg shadow-lg max-w-md w-full ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className="text-2xl font-bold mb-4">Upload Image</h1>
-        <input type="file" onChange={handleImageChange} />
+        <input
+          type="file"
+          onChange={handleImageChange}
+          className={`mb-4 ${theme === 'dark' ? 'bg-gray-700 text-white' : 'bg-gray-200 text-black'}`}
+        />
         <button
           onClick={handleUpload}
-          className="bg-blue-500 text-white px-4 py-2 mt-4 rounded w-full"
+          className={`bg-blue-500 text-white px-4 py-2 mt-4 rounded w-full ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={uploading}
         >
           {uploading ? "Uploading..." : "Upload Image"}
         </button>
         <button
           onClick={onClose}
-          className="bg-gray-500 text-white px-4 py-2 mt-4 rounded w-full"
+          className={`bg-gray-500 text-white px-4 py-2 mt-4 rounded w-full`}
         >
           Cancel
         </button>
