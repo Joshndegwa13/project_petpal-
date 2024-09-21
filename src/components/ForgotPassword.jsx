@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { doPasswordReset } from "../firebase/auth";
+import { ThemeContext } from "../context/Themecontext"; // Import ThemeContext
 
 function ForgotPassword() {
+  const { theme } = useContext(ThemeContext); // Use theme from context
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -14,7 +16,6 @@ function ForgotPassword() {
     setIsSubmitting(true);
 
     try {
-      // Send password reset email
       await doPasswordReset(email);
       setSuccessMessage("Password reset email sent successfully! Check your inbox.");
     } catch (error) {
@@ -25,26 +26,27 @@ function ForgotPassword() {
   };
 
   return (
-    <div>
+    <div className={theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-white text-black'}>
       <div className="w-full mb-8">
-        <h1 className="text-3xl font-bold text-red-500 relative ml-20">
-          PetPal
-        </h1>
+        <h1 className="text-3xl font-bold text-red-500 relative ml-20">PetPal</h1>
         <div className="w-full h-0.5 bg-gray-400 mt-2"></div>
       </div>
 
       <div className="w-full h-screen flex justify-center items-center">
-        <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+        <div className={`w-full max-w-md shadow-lg rounded-lg p-8 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
           <h3 className="text-2xl font-semibold mb-4">Reset Password</h3>
           <p className="text-sm mb-4">Please enter your email to reset your password</p>
 
           <form onSubmit={onSubmit} className="flex flex-col">
+            <label className="mb-1" htmlFor="email">Email:</label>
             <input
-              type="text"
+              id="email"
+              type="email"
               placeholder="Enter Your Email*"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="placeholder:text-black bg-transparent py-2 my-2 border-b border-black focus:outline-none"
+              required
             />
             
             <button
