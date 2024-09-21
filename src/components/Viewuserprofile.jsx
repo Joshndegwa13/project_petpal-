@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { auth } from "../firebase/firebase";
 import { updateProfile, updateEmail } from "firebase/auth";
+import { useContext } from "react";
+import { ThemeContext } from "../context/Themecontext"; 
 
-function Viewuserprofile() {
+function ViewUserProfile() {
+  const { theme } = useContext(ThemeContext); 
   const [user, setUser] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  // Fetch the current authenticated user's info
+  // Fetching the current authenticated users info 
   useEffect(() => {
     const fetchUser = () => {
       const currentUser = auth.currentUser;
@@ -31,12 +34,12 @@ function Viewuserprofile() {
     e.preventDefault();
     try {
       if (user) {
-        // Update the display name (first name and last name)
+        // Updating the display name 
         await updateProfile(user, {
           displayName: `${firstName} ${lastName}`,
         });
 
-        // Update the email
+        // Updating the email
         await updateEmail(user, email);
 
         alert("Profile updated successfully!");
@@ -48,12 +51,10 @@ function Viewuserprofile() {
   };
 
   return (
-    <div className="px-4 py-4">
+    <div className={`px-4 py-4 transition duration-500 ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
       <Navbar />
       <div className="px-24">
-        <p className="text-2xl font-bold underline mt-10 mb-6">
-          Account Settings
-        </p>
+        <p className="text-2xl font-bold underline mt-10 mb-6">Account Settings</p>
         <div className="w-full h-0.5 bg-gray-400"></div>
 
         <p className="font-semibold underline mt-10">Your Information</p>
@@ -67,7 +68,7 @@ function Viewuserprofile() {
               <p>First Name*</p>
               <input
                 type="text"
-                className="w-full h-9 border border-black mb-2 px-2"
+                className={`w-full h-9 border mb-2 px-2 ${theme === 'dark' ? 'border-gray-600 bg-gray-800 text-white' : 'border-black'}`}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -76,7 +77,7 @@ function Viewuserprofile() {
               <p>Last Name*</p>
               <input
                 type="text"
-                className="w-full h-9 border border-black mb-2 px-2"
+                className={`w-full h-9 border mb-2 px-2 ${theme === 'dark' ? 'border-gray-600 bg-gray-800 text-white' : 'border-black'}`}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -85,7 +86,7 @@ function Viewuserprofile() {
               <p>Email*</p>
               <input
                 type="email"
-                className="w-full h-9 border border-black mb-2 px-2"
+                className={`w-full h-9 border mb-2 px-2 ${theme === 'dark' ? 'border-gray-600 bg-gray-800 text-white' : 'border-black'}`}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -103,4 +104,4 @@ function Viewuserprofile() {
   );
 }
 
-export default Viewuserprofile;
+export default ViewUserProfile;

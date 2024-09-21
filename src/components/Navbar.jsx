@@ -4,12 +4,13 @@ import ProfileDropdown from "../components/ProfileDropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { ThemeContext } from "../context/Themecontext"; // Import ThemeContext
+import { FaSun, FaMoon } from "react-icons/fa"; // Import sun and moon icons
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { userAvatar } = useContext(UserContext); // Access avatar from context
-  const { theme } = useContext(ThemeContext); // Access theme from context
+  const { theme, toggleTheme } = useContext(ThemeContext); // Access theme and toggleTheme from context
   const navigate = useNavigate(); // Hook for navigation
 
   const toggleMenu = () => {
@@ -27,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-gray-900'}`}> {/* Dynamic background and text color */}
+    <nav className={`${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Hamburger Menu for Mobile (Hidden on Large Screens) */}
@@ -39,7 +40,7 @@ const Navbar = () => {
               height={15}
               strokeWidth={2}
               rotate={0}
-              color={theme === 'dark' ? 'white' : 'black'} // Change color based on theme
+              color={theme === 'dark' ? 'white' : 'black'}
               borderRadius={0}
               animationDuration={0.5}
             />
@@ -47,7 +48,7 @@ const Navbar = () => {
 
           {/* Navigation Links (Visible on larger screens) */}
           <div className={`hidden lg:flex space-x-10`}>
-            <h1 className={`text-3xl font-bold ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>PetPal</h1> {/* Title color based on theme */}
+            <h1 className={`text-3xl font-bold ${theme === 'dark' ? 'text-red-400' : 'text-red-500'}`}>PetPal</h1>
             <Link
               to="/home"
               className={`hover:text-red-500 text-lg font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
@@ -74,8 +75,16 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Profile Avatar and Logout Button */}
+          {/* Dark Mode Toggle and Profile Avatar */}
           <div className="flex items-center space-x-4">
+            {/* Dark Mode Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full focus:outline-none"
+            >
+              {theme === 'dark' ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-gray-800" />}
+            </button>
+
             {/* Profile Icon */}
             <div className="relative">
               {userAvatar ? (

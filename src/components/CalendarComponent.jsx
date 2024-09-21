@@ -1,9 +1,8 @@
-// src/components/CalendarComponent.jsx
 import React from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-const CalendarComponent = ({ tasks, vetVisits, onDateChange }) => {
+const CalendarComponent = ({ tasks, vetVisits, onDateChange, theme }) => {
   const tileContent = ({ date, view }) => {
     if (view === "month") {
       const dateString = date.toISOString().split("T")[0];
@@ -24,7 +23,7 @@ const CalendarComponent = ({ tasks, vetVisits, onDateChange }) => {
   };
 
   return (
-    <div className="p-4 bg-white">
+    <div className={`p-4 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
       <h2 className="text-xl font-bold mb-4">Calendar</h2>
       <Calendar onChange={onDateChange} tileContent={tileContent} />
     </div>
