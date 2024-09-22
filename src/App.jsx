@@ -16,9 +16,14 @@ import ImageUpload from './components/ImageUpload';
 import ImageDetail from './components/ImageDetail'; 
 import Tasks from "./components/Tasks";
 
+import OccasionList from "./components/OccasionList";
+import OccasionForm from "./components/OccasionForm";
+
 function App() {
   return (
-    <ThemeProvider>  {/* Wrap the entire app in the ThemeProvider */}
+    <ThemeProvider>
+      {" "}
+      {/* Wrap the entire app in the ThemeProvider */}
       <UserProvider>
         <Router>
           <div>
@@ -32,11 +37,13 @@ function App() {
               <Route path="/registration" element={<Registration />} />
               <Route path="/forgotpassword" element={<ForgotPassword />} />
               <Route path="/petprofile" element={<PetProfile />} />
-            
               <Route path="/image/:id" element={<ImageDetail />} />
-              <Route path='/image/upload'></Route>
+              <Route path="/image/upload"></Route>
               <Route path="/Memories" element={<ImageUpload />} />
               <Route path="/tasks" element={<Tasks />} />
+              <Route path="/occasions" element={<OccasionList />} />
+              <Route path="/occasions/new" element={<OccasionForm />} />
+              <Route path="/occasions/edit/:id" element={<OccasionForm />} />
             </Routes>
           </div>
         </Router>
