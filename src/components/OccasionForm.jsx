@@ -74,7 +74,7 @@ function OccasionForm({ occasion = null }) {
         />
         <button
           type="submit"
-          className="w-full bg-red-500 text-white py-2 rounded-lg"
+          className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-700"
         >
           {occasion ? "Update Treatment" : "Add Treatment"}
         </button>
