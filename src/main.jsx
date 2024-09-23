@@ -6,6 +6,8 @@ import { Authprovider } from './context/authcontext.jsx';
 import { UserProvider } from './context/UserContext.jsx'; // Import UserProvider
 import FirebaseImageUpload from './components/FirebaseImageUpload';
 
+import "bootstrap/dist/css/bootstrap.css";
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Authprovider>

@@ -4,6 +4,10 @@ import { getStorage } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 import { getDatabase } from "firebase/database";
 
+import { getFirestore } from "@firebase/firestore";
+
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDzwLlp3TP0L3ExGU_A9fYJgEH1R5_lbwc",
   authDomain: "petpal-db8cf.firebaseapp.com",
@@ -18,4 +22,6 @@ const storage = getStorage(app);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
-export { storage, auth, database };
+const db = getFirestore(app);
+
+export { storage, auth, database, db};
